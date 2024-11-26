@@ -1,74 +1,82 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Serialization;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
-{
-    private Vector2 movedir;
-    public LayerMask layerMask;
-    public LayerMask layerMaskToWall;
-
-    private void Update()
+    public class PlayerMove : MonoBehaviour
     {
-        MovePlayer();
-    }
+        private Vector2 movedir;
+        public LayerMask layerMask;
+        private GameControl gameControl; // 新增，用于存储GameControl单例实例
 
-    public void MovePlayer()
-    {
-        if (Input.GetKeyDown(KeyCode.W))
+        private void Start()
         {
-            movedir = Vector2.up;
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            movedir = Vector2.down;
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            movedir = Vector2.left;
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            movedir = Vector2.right;
-        }
-        if (movedir!= Vector2.zero)
-        {
-            if (CanMove(movedir))
+            gameControl = GameControl.Instance; // 获取GameControl单例实例
+            if (gameControl == null)
             {
-                MovePlayer(movedir);
-            }
-            else if(!Physics2D.Raycast(transform.position, movedir, 1f, layerMaskToWall))
-            {
-                BoxMoveEvent.CallOnPlayerTryMoveBox(movedir);
-                // 如果箱子成功移动了，玩家也跟着移动
-                MovePlayer(movedir);
+                Debug.LogError("GameControl instance not found!");
             }
         }
 
-        movedir = Vector2.zero;
-    }
 
-    public bool CanMove(Vector2 movedir)
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, movedir, 1f, layerMask);
-        if (!hit)
+        private void Update()
         {
-            return true;
+            MovePlayer();
         }
-        return false;
-    }
 
-    public void MovePlayer(Vector2 movedir)
-    {
-        // 进行射线检测，判断按照移动方向移动时是否会碰到墙壁
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, movedir, 1f, layerMaskToWall);
-        if (!hit)
+        public void MovePlayer()
+        {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                movedir = Vector2.up;
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                movedir = Vector2.down;
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                movedir = Vector2.left;
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                movedir = Vector2.right;
+            }
+            if (movedir != Vector2.zero)
+            {
+                if (CanMove(movedir))
+                {
+                    MovePlayer(movedir);
+                }
+            }
+        
+            movedir = Vector2.zero;
+        }
+
+        public bool CanMove(Vector2 movedir)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, movedir, 1f, layerMask);
+            if (!hit)
+            {
+                return true;
+            }
+            else
+            {
+                MoveBox moveBox = hit.collider.gameObject.GetComponent<MoveBox>();
+                if (moveBox!= null)
+                {
+                    // 新增代码，检查箱子ID是否符合可移动条件
+                    if (moveBox.boxID == gameControl.moveBoxID)
+                    {
+                        return moveBox.MoveToBox(movedir);
+                    }
+                    return false; // 如果ID不符合，直接返回false，表示不可移动
+                }
+            }
+            return false;
+        }
+
+        public void MovePlayer(Vector2 movedir)
         {
             transform.Translate(movedir);
         }
-        
     }
-    
-}
