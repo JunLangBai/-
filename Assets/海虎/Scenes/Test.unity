@@ -122,50 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &153697417
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 153697419}
-  - component: {fileID: 153697418}
-  m_Layer: 0
-  m_Name: BoxMoveEventHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &153697418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153697417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6869c6b4625701f468e462de548981f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &153697419
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153697417}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5471373, y: -1.286949, z: -0.007198337}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &159002302
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,7 +662,7 @@ GameObject:
   - component: {fileID: 1575680712}
   m_Layer: 10
   m_Name: MoveBox (1)
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -726,6 +682,9 @@ MonoBehaviour:
   decectlayer:
     serializedVersion: 2
     m_Bits: 2048
+  decectlayerAll:
+    serializedVersion: 2
+    m_Bits: 3072
   boxID: 2
   mapCorrespondenceID: 0
 --- !u!61 &1575680713
@@ -1114,7 +1073,7 @@ GameObject:
   - component: {fileID: 1784350194}
   m_Layer: 10
   m_Name: MoveBox (2)
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1134,6 +1093,9 @@ MonoBehaviour:
   decectlayer:
     serializedVersion: 2
     m_Bits: 2048
+  decectlayerAll:
+    serializedVersion: 2
+    m_Bits: 3072
   boxID: 1
   mapCorrespondenceID: 1
 --- !u!61 &1784350195
@@ -1307,7 +1269,7 @@ GameObject:
   - component: {fileID: 1970661197}
   m_Layer: 10
   m_Name: MoveBox
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1439,6 +1401,9 @@ MonoBehaviour:
   decectlayer:
     serializedVersion: 2
     m_Bits: 2048
+  decectlayerAll:
+    serializedVersion: 2
+    m_Bits: 3072
   boxID: 1
   mapCorrespondenceID: 0
 --- !u!1660057539 &9223372036854775807
@@ -1454,5 +1419,4 @@ SceneRoots:
   - {fileID: 1784350197}
   - {fileID: 1575680715}
   - {fileID: 777386257}
-  - {fileID: 153697419}
   - {fileID: 1858646313}

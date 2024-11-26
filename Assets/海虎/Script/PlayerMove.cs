@@ -83,4 +83,9 @@ public class PlayerMove : MonoBehaviour
     {
         transform.Translate(movedir);
     }
+
+    public Vector2 ReturnMoveDir()
+    {
+        return movedir;
+    }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 public class MoveBox : MonoBehaviour
 {
     public LayerMask decectlayer;
+    public LayerMask decectlayerAll;
     public int boxID;
     // 重点依据这个变量来进行同步分组
     public int mapCorrespondenceID;
@@ -27,13 +28,17 @@ public class MoveBox : MonoBehaviour
                 MoveBox otherMoveBox = obj.GetComponent<MoveBox>();
                 if (otherMoveBox!= null && otherMoveBox.boxID == this.boxID)
                 {
-                    // 假设添加一个移动速度变量 speed，这里乘以Time.deltaTime来保证帧率无关性
-                    float speed = 5f;
+                    RaycastHit2D hitall = Physics2D.Raycast(transform.position, dir, 1f, decectlayer);
+                    // 新增判断：如果射线检测到了物体（hit有值），且这个物体是MoveBox组件挂载的方块，就不移动，直接返回false表示推动失败
+                    if (hitall && hitall.collider!= null && hitall.collider.tag == "Box")
+                    {
+                        return false;
+                    }
                     otherMoveBox.transform.Translate(dir);
                 }
             }
-            //transform.Translate(dir);
-            return true;
+            //transform.Translate(dir * speed * Time.deltaTime);
+            //return true;
         }
 
         return false;
