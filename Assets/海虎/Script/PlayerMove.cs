@@ -26,19 +26,19 @@
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
-                movedir = Vector2.up;
+                movedir = Vector2.up/2f;
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
-                movedir = Vector2.down;
+                movedir = Vector2.down/2f;
             }
             else if (Input.GetKeyDown(KeyCode.A))
             {
-                movedir = Vector2.left;
+                movedir = Vector2.left/2f;
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                movedir = Vector2.right;
+                movedir = Vector2.right/2f;
             }
             if (movedir!= Vector2.zero)
             {
@@ -59,7 +59,7 @@
 
         public bool CanMove(Vector2 movedir)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, movedir, 1.0f, layerMask); // 调整距离为 1.0f
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, movedir, 0.5f, layerMask);
             if (!hit)
             {
                 return true;
@@ -67,7 +67,7 @@
             else
             {
                 MoveBox moveBox = hit.collider.gameObject.GetComponent<MoveBox>();
-                if (moveBox != null)
+                if (moveBox!= null)
                 {
                     if (moveBox.boxID == gameControl.moveBoxID)
                     {
@@ -78,7 +78,6 @@
             }
             return false;
         }
-
 
         public void MovePlayer(Vector2 movedir)
         {
