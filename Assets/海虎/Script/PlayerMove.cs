@@ -20,8 +20,17 @@
         private void Update()
         {
             MovePlayer();
+            ChangePlayerTransform();
         }
 
+        public void ChangePlayerTransform()
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                GameControl.Instance.GoToNextlevel(GetComponent<PlayerMove>().gameObject);
+            }
+        }
+        
         public void MovePlayer()
         {
             if (Input.GetKeyDown(KeyCode.W))
