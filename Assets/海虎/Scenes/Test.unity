@@ -887,6 +887,7 @@ GameObject:
   - component: {fileID: 777386258}
   - component: {fileID: 777386260}
   - component: {fileID: 777386259}
+  - component: {fileID: 777386261}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -1048,6 +1049,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!95 &777386261
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777386255}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &786280321
 GameObject:
   m_ObjectHideFlags: 0
@@ -2572,7 +2594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2664386, y: 0.42141092}
   m_AnchorMax: {x: 0.33773977, y: 0.5661164}
-  m_AnchoredPosition: {x: 5.999817, y: 1.199997}
+  m_AnchoredPosition: {x: 5.999756, y: 1.199997}
   m_SizeDelta: {x: 7.130005, y: -2.3600006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2084117865
