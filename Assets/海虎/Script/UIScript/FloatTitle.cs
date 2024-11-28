@@ -9,6 +9,11 @@ public class FloatTitle : MonoBehaviour
     private float startY;                // 初始的Y轴位置
     private float startX;                //初始x轴位置
 
+    [Header("MoveGrid")] 
+    public GameObject title;
+    public GameObject O_o;
+    
+
     void Start()
     {
         // 记录小球的初始Y轴位置
