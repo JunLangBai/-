@@ -8,6 +8,8 @@ public class MoveBox : MonoBehaviour
     public int boxID;
     // 重点依据这个变量来进行同步分组
     public int mapCorrespondenceID;
+    
+    public Animator animator;
 
     private void Awake()
     {
@@ -36,6 +38,7 @@ public class MoveBox : MonoBehaviour
                         return false;
                     }
                     otherMoveBox.transform.Translate(dir);
+                    animator.SetTrigger("IsPush");
                 }
             }
             return true;
