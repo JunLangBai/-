@@ -19,8 +19,16 @@
 
         private void Update()
         {
-            MovePlayer();
-            ChangePlayerTransform();
+            if (Time.timeScale != 0)
+            {
+                MovePlayer();
+                ChangePlayerTransform();
+            }
+            else
+            {
+                return;
+            }
+            
         }
 
         public void ChangePlayerTransform()

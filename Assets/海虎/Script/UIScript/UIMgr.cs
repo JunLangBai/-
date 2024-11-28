@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class UIMgr : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static UIMgr Instance; //单例
+    
+    void Awake()
     {
-        
+        if (Instance == null)
+            Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OpenUI(GameObject UI)
     {
-        
+        UI.SetActive(true);
+    }
+
+    public void CloseUI(GameObject UI)
+    {
+        UI.SetActive(false);
     }
 }
