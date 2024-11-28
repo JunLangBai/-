@@ -24,7 +24,7 @@ public class GameControl : MonoBehaviour
     {
         if (GoToLevelCount < 2)
         {
-            Vector2 dir = new Vector2(player.transform.position.x, player.transform.position.y + 100);
+            Vector2 dir = new Vector2(0f,100f);
             player.transform.Translate(dir);
             GoToLevelCount++;
             ChangeMoveBoxID();

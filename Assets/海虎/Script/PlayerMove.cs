@@ -9,6 +9,7 @@
         private GameControl gameControl; // 新增，用于存储GameControl单例实例
 
         public Animator animator;
+        public CanvasGroup cantgolevel;
         
         public SpriteRenderer spriteRenderer; // 用于控制精灵翻转
         
@@ -36,13 +37,44 @@
             }
             
         }
-
+        
         public void ChangePlayerTransform()
         {
+           
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                GameControl.Instance.GoToNextlevel(GetComponent<PlayerMove>().gameObject);
+                // 获取当前物体的当前位置
+                Vector3 position = transform.position;
+                Vector3 positionnow = transform.position;
+                position.y = transform.position.y + 100f;
+                float checkRadius = 0.5f;  // 检测半径
+
+                // 使用OverlapCircle检查当前位置附近是否有其他2D Collider
+                Collider2D[] hitColliders = Physics2D.OverlapCircleAll(position, checkRadius);
+
+                // 如果检测到其他碰撞体
+                if (hitColliders.Length > 0)
+                {
+                    cantgolevel.alpha = 1;  // 显示文字 
+                    // 启动协程，1秒后隐藏文字
+                    StartCoroutine(HideTextAfterDelay(1f));
+                    transform.position = positionnow;
+                    
+                }
+                else
+                {
+                    GameControl.Instance.GoToNextlevel(GetComponent<PlayerMove>().gameObject);
+                    cantgolevel.alpha = 0;
+                }
             }
+            
+        }
+        
+        // 定义协程，控制文字显示和消失
+        private IEnumerator HideTextAfterDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);  // 等待指定的时间
+            cantgolevel.alpha = 0;  // 隐藏文字
         }
         
         public void MovePlayer()

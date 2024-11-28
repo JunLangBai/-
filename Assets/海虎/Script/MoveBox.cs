@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,12 +10,36 @@ public class MoveBox : MonoBehaviour
     // 重点依据这个变量来进行同步分组
     public int mapCorrespondenceID;
     
+    // 引用Sprite Renderer
+    private SpriteRenderer spriteRenderer;
+
+    // 可在Inspector中设置的Sprite
+    public Sprite newSprite;
+    
     public Animator animator;
 
     private void Awake()
     {
         // 调用BoxManager的注册方法，传入mapCorrespondenceID来进行分组注册
         BoxManager.RegisterBox(mapCorrespondenceID, this.gameObject);
+    }
+
+    private void Start()
+    {
+        // 获取物体上的Sprite Renderer组件
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        if (boxID != GameControl.Instance.moveBoxID)
+        {
+            // 如果Sprite Renderer存在，则更换为新的雪碧图
+            if (spriteRenderer != null && newSprite != null)
+            {
+                spriteRenderer.sprite = newSprite;
+            }
+        }
     }
 
     public bool MoveToBox(Vector2 dir)
