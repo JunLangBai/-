@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameControl : MonoBehaviour
 {
     public static GameControl Instance; //单例
+    
 
     public int moveBoxID = 1;
     public int GoToLevelCount;
