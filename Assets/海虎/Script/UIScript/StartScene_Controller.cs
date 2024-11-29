@@ -6,7 +6,10 @@ public class StartScene_Controller : MonoBehaviour
 {
 
     public bool isThanks = false;
+    public bool isHelps = false;
+    
     public GameObject ThanksPic;
+    public GameObject HelpPic;
     
     
     
@@ -26,6 +29,21 @@ public class StartScene_Controller : MonoBehaviour
         {
             UIMgr.Instance.OpenUI(ThanksPic);
             isThanks = true;
+            
+        }
+    }
+
+    public void Help()
+    {
+        if (isHelps)
+        {
+            UIMgr.Instance.CloseUI(HelpPic);
+            isHelps = false;
+        }
+        else
+        {
+            UIMgr.Instance.OpenUI(HelpPic);
+            isHelps = true;
             
         }
     }
