@@ -16,13 +16,16 @@ public class BoxManager : MonoBehaviour
         boxGroups[mapCorrespondenceID].Add(box);
     }
 
-    // 根据mapCorrespondenceID获取对应的GameObject列表
     public static List<GameObject> GetBoxesWithID(int mapCorrespondenceID)
     {
         if (boxGroups.ContainsKey(mapCorrespondenceID))
         {
+            // 清理销毁的对象
+            boxGroups[mapCorrespondenceID].RemoveAll(box => box == null);
+
             return boxGroups[mapCorrespondenceID];
         }
         return new List<GameObject>();
     }
+
 }
