@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelSceneController : MonoBehaviour
 {
@@ -31,5 +32,19 @@ public class LevelSceneController : MonoBehaviour
             isPaused = true;
             
         }
+    }
+
+    public void Restart()
+    {
+        // 获取当前场景的名字
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        // 重新加载当前场景
+        SceneManager.LoadScene(currentSceneName);
+    }
+
+    public void Quit()
+    {
+        SceneManager.LoadScene("StartScenes");
     }
 }

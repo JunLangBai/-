@@ -47,7 +47,7 @@
                 Vector3 position = transform.position;
                 Vector3 positionnow = transform.position;
                 position.y = transform.position.y + 100f;
-                float checkRadius = 0.5f;  // 检测半径
+                float checkRadius = 0.4f;  // 检测半径
 
                 // 使用OverlapCircle检查当前位置附近是否有其他2D Collider
                 Collider2D[] hitColliders = Physics2D.OverlapCircleAll(position, checkRadius);
@@ -143,7 +143,6 @@
         public void MovePlayer(Vector2 movedir)
         {
             transform.Translate(movedir);
-            animator.SetTrigger("IsMoving");
         }
 
         public Vector2 ReturnMoveDir()
