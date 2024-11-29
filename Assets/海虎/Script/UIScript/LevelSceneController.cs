@@ -38,9 +38,12 @@ public class LevelSceneController : MonoBehaviour
     {
         // 获取当前场景的名字
         string currentSceneName = SceneManager.GetActiveScene().name;
-
+        
+        Time.timeScale = 1f;
+        
         // 重新加载当前场景
         SceneManager.LoadScene(currentSceneName);
+        
     }
 
     public void Quit()

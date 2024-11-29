@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class StartScene_Controller : MonoBehaviour
 {
+
+    public void Start()
+    {
+        SceneManager.LoadScene("Level1");
+    }
+
     public void ExitGame()
     {
         // 如果是在编辑器中运行，使用 UnityEditor 的功能退出播放模式
