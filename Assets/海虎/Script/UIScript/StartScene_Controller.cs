@@ -5,9 +5,29 @@ using UnityEngine.SceneManagement;
 public class StartScene_Controller : MonoBehaviour
 {
 
+    public bool isThanks = false;
+    public GameObject ThanksPic;
+    
+    
+    
     public void StartGame()
     {
         SceneManager.LoadScene("Level1");
+    }
+
+    public void Thanks()
+    {
+        if (isThanks)
+        {
+            UIMgr.Instance.CloseUI(ThanksPic);
+            isThanks = false;
+        }
+        else
+        {
+            UIMgr.Instance.OpenUI(ThanksPic);
+            isThanks = true;
+            
+        }
     }
 
     public void ExitGame()
