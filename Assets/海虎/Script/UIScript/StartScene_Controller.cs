@@ -56,7 +56,7 @@ public class StartScene_Controller : MonoBehaviour
         }
 
         // 显示过渡场景一秒钟
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         // 卸载过渡场景
         Debug.Log("Unloading TransitionScene after 1 second...");

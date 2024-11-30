@@ -5,6 +5,8 @@ using UnityEngine;
 public class UIMgr : MonoBehaviour
 {
     public static UIMgr Instance { get; private set; }
+    
+    public AudioClip soundClip;      // 音效文件
 
     private void Awake()
     {
@@ -18,6 +20,14 @@ public class UIMgr : MonoBehaviour
             Destroy(gameObject);  // 销毁重复的实例
         }
     }
+
+    public void PlaySound(AudioSource audioSource)
+    {
+        // 播放音效
+        audioSource.clip = soundClip;
+        audioSource.Play();
+    }
+
     public void OpenUI(GameObject UI)
     {
         UI.SetActive(true);
