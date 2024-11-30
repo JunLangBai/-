@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameControl : MonoBehaviour
 {
-    public static GameControl Instance; //单例
+    public static GameControl Instance{ get; private set; }//单例
     
 
     public int moveBoxID = 1;
@@ -18,7 +18,14 @@ public class GameControl : MonoBehaviour
     void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);  // 保持对象在场景切换时不被销毁
+        }
+        else
+        {
+            Destroy(gameObject);  // 销毁重复的实例
+        }
     }
 
     public void ChangeMoveBoxID()

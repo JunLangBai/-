@@ -28,11 +28,13 @@ public class LevelSceneController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            UIMgr.Instance.PlaySoundInLevel();
             TogglePause();
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            UIMgr.Instance.PlaySoundInLevel();
             Preview();
         }
         ShowImage(GameControl.Instance.moveBoxID - 1);
@@ -43,12 +45,14 @@ public class LevelSceneController : MonoBehaviour
     {
         if (isPaused)
         {
+            UIMgr.Instance.PlaySoundInLevel();
             UIMgr.Instance.CloseUI(stopBg);
             Time.timeScale = 1f;
             isPaused = false;
         }
         else
         {
+            UIMgr.Instance.PlaySoundInLevel();
             UIMgr.Instance.OpenUI(stopBg);
             Time.timeScale = 0f;
             isPaused = true;
@@ -60,12 +64,14 @@ public class LevelSceneController : MonoBehaviour
     {
         if (isPreview)
         {
+            UIMgr.Instance.PlaySoundInLevel();
             UIMgr.Instance.CloseUI(preview);
             UIMgr.Instance.OpenUI(previewButton);
             isPreview = false;
         }
         else
         {
+            UIMgr.Instance.PlaySoundInLevel();
             UIMgr.Instance.OpenUI(preview);
             UIMgr.Instance.CloseUI(previewButton);
             isPreview = true;
@@ -75,6 +81,7 @@ public class LevelSceneController : MonoBehaviour
 
     public void Restart()
     {
+        UIMgr.Instance.PlaySoundInLevel();
         // 获取当前场景的名字
         string currentSceneName = SceneManager.GetActiveScene().name;
         
@@ -88,11 +95,13 @@ public class LevelSceneController : MonoBehaviour
     {
         if (isHelps)
         {
+            UIMgr.Instance.PlaySoundInLevel();
             UIMgr.Instance.CloseUI(HelpPic);
             isHelps = false;
         }
         else
         {
+            UIMgr.Instance.PlaySoundInLevel();
             UIMgr.Instance.OpenUI(HelpPic);
             isHelps = true;
             
@@ -145,6 +154,7 @@ public class LevelSceneController : MonoBehaviour
 
     public void Quit()
     {
+        UIMgr.Instance.PlaySoundInLevel();
         Time.timeScale = 1f;
         SceneManager.LoadScene("StartScenes");
     }

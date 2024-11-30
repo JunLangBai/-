@@ -34,11 +34,13 @@ public class EndControl : MonoBehaviour
 
     public void BackStart()
     {
+        UIMgr.Instance.PlaySoundInEnd();
         SceneManager.LoadScene("StartScenes");
     }
 
     public void Restart()
     {
+        UIMgr.Instance.PlaySoundInEnd();
         SceneManager.LoadScene("Level1");
     }
 }

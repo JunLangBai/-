@@ -15,6 +15,7 @@ public class StartScene_Controller : MonoBehaviour
     
     public void StartGame()
     {
+        UIMgr.Instance.PlaySoundInStart();
         // 直接调用过渡场景切换
         TransitionToScene("Level1");
         // 强制卸载当前场景和过渡场景
@@ -80,11 +81,13 @@ public class StartScene_Controller : MonoBehaviour
     {
         if (isThanks)
         {
+            UIMgr.Instance.PlaySoundInStart();
             UIMgr.Instance.CloseUI(ThanksPic);
             isThanks = false;
         }
         else
         {
+            UIMgr.Instance.PlaySoundInStart();
             UIMgr.Instance.OpenUI(ThanksPic);
             isThanks = true;
             
@@ -95,11 +98,13 @@ public class StartScene_Controller : MonoBehaviour
     {
         if (isHelps)
         {
+            UIMgr.Instance.PlaySoundInStart();
             UIMgr.Instance.CloseUI(HelpPic);
             isHelps = false;
         }
         else
         {
+            UIMgr.Instance.PlaySoundInStart();
             UIMgr.Instance.OpenUI(HelpPic);
             isHelps = true;
             
