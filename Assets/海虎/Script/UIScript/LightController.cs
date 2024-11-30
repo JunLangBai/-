@@ -18,6 +18,7 @@ public class LightController : MonoBehaviour
 
         // 开始循环渐变
         StartCoroutine(FadeLoop());
+        isFadingOut = true; // 当前是否在淡出
     }
 
     IEnumerator FadeLoop()
