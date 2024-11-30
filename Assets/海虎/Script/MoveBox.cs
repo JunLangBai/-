@@ -15,6 +15,8 @@ public class MoveBox : MonoBehaviour
 
     // 可在Inspector中设置的Sprite
     public Sprite newSprite;
+    //旧图
+    public Sprite oldSprite;
     
     public Animator animator;
 
@@ -38,6 +40,13 @@ public class MoveBox : MonoBehaviour
             if (spriteRenderer != null && newSprite != null)
             {
                 spriteRenderer.sprite = newSprite;
+            }
+        }
+        else
+        {
+            if (spriteRenderer != null && newSprite != null)
+            {
+                spriteRenderer.sprite = oldSprite;
             }
         }
     }
