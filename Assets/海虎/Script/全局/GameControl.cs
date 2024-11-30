@@ -9,6 +9,7 @@ public class GameControl : MonoBehaviour
 
     public int moveBoxID = 1;
     public int GoToLevelCount;
+    public int CoinCount = 0;
     
     void Awake()
     {
