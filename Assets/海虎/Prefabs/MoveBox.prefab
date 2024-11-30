@@ -152,4 +152,5 @@ MonoBehaviour:
   boxID: 1
   mapCorrespondenceID: 0
   newSprite: {fileID: 21300000, guid: 225715c4a7416b746ae1eebfb9061bf4, type: 3}
+  oldSprite: {fileID: 21300000, guid: 9942d983f98deb4439eef36be8a68777, type: 3}
   animator: {fileID: 5386704061106860533, guid: 21a1069b86c17a5429d19934260f7667, type: 3}
