@@ -6,43 +6,45 @@ public class FloatTitle : MonoBehaviour
 {
     public float floatAmplitude = 0.5f;  // 浮动的幅度
     public float floatSpeed = 1f;        // 浮动的速度
-    private float startY;                // 初始的Y轴位置
-    private float startX;                //初始x轴位置
+    private Vector3 startTitlePos;       // title的初始位置
+    private Vector3 startOOPos;          // O_o的初始位置
 
-    [Header("MoveGrid")] 
+    [Header("MoveGrid")]
     public GameObject title;
     public GameObject O_o;
-    
 
     void Start()
     {
-        
+        // 在开始时记录title和O_o物体的初始位置
+        startTitlePos = title.transform.position;
+        startOOPos = O_o.transform.position;
     }
 
     void Update()
     {
-        FloatMove(title);
-        FloatMove(O_o);
+        // 分别处理title和O_o的浮动
+        FloatMove(title, startTitlePos);
+        FloatMove(O_o, startOOPos);
     }
 
-    public void FloatMove(GameObject target)
+    public void FloatMove(GameObject target, Vector3 startPos)
     {
-        // 记录小球的初始Y轴位置
-        startY = target.transform.position.y;
-        startX = target.transform.position.x;
-        
-        // 使用正弦函数计算浮动的偏移量
-        float newY = startY + Mathf.Sin(Time.time * floatSpeed) * floatAmplitude;
-        float newX = startX + Mathf.Sin(Time.time * floatSpeed) * floatAmplitude;
+        // 计算浮动范围
+        float newY = startPos.y + Mathf.PingPong(Time.time * floatSpeed, floatAmplitude * 2) - floatAmplitude;
 
-        // 更新小球的Y轴位置，使其上下浮动
+        // 如果目标是title，x轴和y轴都需要浮动
         if (target == title)
         {
+            float newX = startPos.x + Mathf.PingPong(Time.time * floatSpeed, floatAmplitude * 2) - floatAmplitude;
             target.transform.position = new Vector3(newX, newY, target.transform.position.z);
         }
+        // 如果目标是O_o，y轴浮动方向与title反向
         else if (target == O_o)
         {
-            target.transform.position = new Vector3(target.transform.position.x, newY, target.transform.position.z);
+            // 反转眼睛的Y轴浮动
+            target.transform.position = new Vector3(target.transform.position.x, startOOPos.y - (Mathf.PingPong(Time.time * floatSpeed, floatAmplitude * 2) - floatAmplitude), target.transform.position.z);
         }
     }
+
+
 }

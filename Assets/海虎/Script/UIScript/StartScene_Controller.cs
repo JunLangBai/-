@@ -17,6 +17,9 @@ public class StartScene_Controller : MonoBehaviour
     {
         // 直接调用过渡场景切换
         TransitionToScene("Level1");
+        // 强制卸载当前场景和过渡场景
+        SceneManager.UnloadSceneAsync("TransitionScene");
+        SceneManager.UnloadSceneAsync("StartScene");
     }
 
     public void TransitionToScene(string targetSceneName)
@@ -27,33 +30,52 @@ public class StartScene_Controller : MonoBehaviour
 
     private IEnumerator LoadSceneWithTransition(string targetSceneName)
     {
-        // 2. 记录当前场景，以便稍后卸载
         string currentSceneName = SceneManager.GetActiveScene().name;
+        Debug.Log("Current scene: " + currentSceneName);
 
-        // 3. 加载过渡场景
+        // 检查并卸载 TransitionScene（如果已加载）
+        Scene transitionScene = SceneManager.GetSceneByName("TransitionScene");
+        if (transitionScene.isLoaded)
+        {
+            Debug.Log("Unloading TransitionScene...");
+            // 等待卸载完成
+            yield return SceneManager.UnloadSceneAsync("TransitionScene");
+        }
+
+        // 加载 TransitionScene
+        Debug.Log("Loading TransitionScene...");
         yield return SceneManager.LoadSceneAsync("TransitionScene", LoadSceneMode.Additive);
-        
-        // 4. 异步加载目标场景
+
+        // 异步加载目标场景
+        Debug.Log("Loading target scene: " + targetSceneName);
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetSceneName, LoadSceneMode.Additive);
-        
-        // 等待目标场景加载完成
+
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
 
-        // 5. 显示过渡场景一秒钟
-        yield return new WaitForSeconds(1f);
+        // 显示过渡场景一秒钟
+        yield return new WaitForSeconds(2f);
 
-        // 6. 卸载过渡场景
-        SceneManager.UnloadSceneAsync("TransitionScene");
+        // 卸载过渡场景
+        Debug.Log("Unloading TransitionScene after 1 second...");
+        if (SceneManager.GetSceneByName("TransitionScene").isLoaded)
+        {
+            yield return SceneManager.UnloadSceneAsync("TransitionScene");
+        }
 
-        // 7. 卸载之前的场景
+        // 卸载当前场景（如果目标场景与当前场景不同）
         if (currentSceneName != targetSceneName)
         {
-            SceneManager.UnloadSceneAsync(currentSceneName);
+            Debug.Log("Unloading current scene: " + currentSceneName);
+            yield return SceneManager.UnloadSceneAsync(currentSceneName);
         }
+
+        Debug.Log("Scene transition complete.");
     }
+
+
     public void Thanks()
     {
         if (isThanks)
