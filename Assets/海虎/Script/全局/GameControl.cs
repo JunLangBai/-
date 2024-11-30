@@ -8,6 +8,7 @@ public class GameControl : MonoBehaviour
     
 
     public int moveBoxID = 1;
+    public int moveBoxID2 = 0;
     public int GoToLevelCount;
     public int CoinCount = 0;
     
