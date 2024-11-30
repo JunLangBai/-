@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,11 @@ public class GameControl : MonoBehaviour
         {
             Destroy(gameObject);  // 销毁重复的实例
         }
+    }
+
+    private void Start()
+    {
+        ResetAll();
     }
 
     public void ChangeMoveBoxID()
@@ -58,5 +64,13 @@ public class GameControl : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);  // 等待指定的时间
         cv.alpha = 0;  // 隐藏文字
+    }
+
+    public void ResetAll()
+    {
+        moveBoxID = 1;
+        CoinCount = 0;
+        GoToLevelCount = 0;
+        moveBoxID2 = 0; 
     }
 }

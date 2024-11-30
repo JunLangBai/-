@@ -22,6 +22,7 @@ public class LevelSceneController : MonoBehaviour
     void Start()
     {
         FadeStart();
+        GameControl.Instance.ResetAll();
     }
     
     private void Update()
