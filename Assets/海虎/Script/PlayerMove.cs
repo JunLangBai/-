@@ -14,6 +14,7 @@
         public SpriteRenderer spriteRenderer; // 用于控制精灵翻转
         
         private bool isPushingBox = false; // 新增标记，表示玩家是否正在推方块
+        
 
         private void Start()
         {

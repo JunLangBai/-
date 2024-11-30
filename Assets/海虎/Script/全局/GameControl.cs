@@ -12,6 +12,9 @@ public class GameControl : MonoBehaviour
     public int GoToLevelCount;
     public int CoinCount = 0;
     
+    public CanvasGroup cantGoGroup;
+    public float waitTime;
+    
     void Awake()
     {
         if (Instance == null)
@@ -34,12 +37,19 @@ public class GameControl : MonoBehaviour
         }
         else
         {
+            cantGoGroup.alpha = 1;
             CantGoNextLevel();
         }
     }
 
     public void CantGoNextLevel()
     {
-        Debug.Log("CantGoNextLevel");
+        StartCoroutine(dontgo(cantGoGroup,waitTime));
+    }
+
+    private IEnumerator dontgo(CanvasGroup cv,float delay)
+    {
+        yield return new WaitForSeconds(delay);  // 等待指定的时间
+        cv.alpha = 0;  // 隐藏文字
     }
 }

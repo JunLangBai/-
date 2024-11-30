@@ -616,6 +616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveBoxID: 1
+  moveBoxID2: 0
   GoToLevelCount: 0
   CoinCount: 0
 --- !u!4 &1047370071
@@ -896,6 +897,7 @@ GameObject:
   - component: {fileID: 1980168799}
   - component: {fileID: 1980168801}
   - component: {fileID: 1980168800}
+  - component: {fileID: 1980168802}
   m_Layer: 5
   m_Name: Pic
   m_TagString: Untagged
@@ -963,6 +965,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1980168798}
   m_CullTransparentMesh: 1
+--- !u!225 &1980168802
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980168798}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2075361948
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,6 +986,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2075361949}
+  - component: {fileID: 2075361950}
   m_Layer: 0
   m_Name: EndControl
   m_TagString: Untagged
@@ -994,6 +1009,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2075361950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075361948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9c5f2dc4ba1bf4899f9f4238000385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 1980168802}
+  fadeDuration: 0.5
 --- !u!1 &2120339574
 GameObject:
   m_ObjectHideFlags: 0
