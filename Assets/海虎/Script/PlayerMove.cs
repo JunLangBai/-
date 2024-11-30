@@ -163,8 +163,4 @@
                 spriteRenderer.flipX = true;
             }
         }
-
-
-
-
     }
