@@ -27,6 +27,7 @@ public class GameControl : MonoBehaviour
         {
             Destroy(gameObject);  // 销毁重复的实例
         }
+        RestartCG();
     }
 
     private void Start()
@@ -65,6 +66,11 @@ public class GameControl : MonoBehaviour
             StartCoroutine(dontgo(cantGoGroup, waitTime));
             isDontGoCoroutineRunning = true;  // 标记协程已启动
         }
+    }
+
+    public void RestartCG()
+    {
+        cantGoGroup = GameObject.Find("NoGo").GetComponent<CanvasGroup>();
     }
 
     private IEnumerator dontgo(CanvasGroup cv, float delay)

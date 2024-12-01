@@ -17,7 +17,12 @@ public class LevelSceneController : MonoBehaviour
     private bool isPreview = false;
     public CanvasGroup[] images;  // 三张图片的 CanvasGroup
     public CanvasGroup[] nextImages;  // 三张图片的 CanvasGroup
-    
+
+
+    private void Awake()
+    {
+        GameControl.Instance.RestartCG();
+    }
 
     void Start()
     {
