@@ -39,9 +39,10 @@
             
         }
         
+        private bool isCoroutineRunning = false;  // 用来标识协程是否在运行
+
         public void ChangePlayerTransform()
         {
-           
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 // 获取当前物体的当前位置
@@ -56,11 +57,16 @@
                 // 如果检测到其他碰撞体
                 if (hitColliders.Length > 0)
                 {
-                    cantgolevel.alpha = 1;  // 显示文字 
-                    // 启动协程，1秒后隐藏文字
-                    StartCoroutine(HideTextAfterDelay(1f));
+                    cantgolevel.alpha = 1;  // 显示文字
+
+                    // 只有在协程未启动时，才启动新的协程
+                    if (!isCoroutineRunning)
+                    {
+                        StartCoroutine(HideTextAfterDelay(1f));
+                        isCoroutineRunning = true;  // 标记协程已启动
+                    }
+
                     transform.position = positionnow;
-                    
                 }
                 else
                 {
@@ -68,16 +74,16 @@
                     cantgolevel.alpha = 0;
                 }
             }
-            
         }
-        
-        // 定义协程，控制文字显示和消失
+
+// 定义协程，控制文字显示和消失
         private IEnumerator HideTextAfterDelay(float delay)
         {
             yield return new WaitForSeconds(delay);  // 等待指定的时间
             cantgolevel.alpha = 0;  // 隐藏文字
+            isCoroutineRunning = false;  // 协程结束后，标记协程已停止
         }
-        
+
         public void MovePlayer()
         {
             if (Input.GetKeyDown(KeyCode.W))

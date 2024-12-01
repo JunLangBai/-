@@ -55,16 +55,25 @@ public class GameControl : MonoBehaviour
         }
     }
 
+    private bool isDontGoCoroutineRunning = false;  // 用来标识 dontgo 协程是否在运行
+
     public void CantGoNextLevel()
     {
-        StartCoroutine(dontgo(cantGoGroup,waitTime));
+        // 只有在协程没有在运行时，才启动协程
+        if (!isDontGoCoroutineRunning)
+        {
+            StartCoroutine(dontgo(cantGoGroup, waitTime));
+            isDontGoCoroutineRunning = true;  // 标记协程已启动
+        }
     }
 
-    private IEnumerator dontgo(CanvasGroup cv,float delay)
+    private IEnumerator dontgo(CanvasGroup cv, float delay)
     {
         yield return new WaitForSeconds(delay);  // 等待指定的时间
         cv.alpha = 0;  // 隐藏文字
+        isDontGoCoroutineRunning = false;  // 协程结束后，标记协程已停止
     }
+
 
     public void ResetAll()
     {
